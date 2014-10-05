@@ -94,6 +94,12 @@ FILE(GLOB IVP_LIBRARY_DIRS ${MOOSIVP_SOURCE_TREE_BASE}/lib )
 LINK_DIRECTORIES(${IVP_LIBRARY_DIRS})
 
 #=============================================================================
+# Specify where to find lcm headers...
+#=============================================================================
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+#=============================================================================
 # Specify Compiler Flags
 #=============================================================================
 IF( ${WIN32} )
