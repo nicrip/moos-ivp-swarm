@@ -1,0 +1,7 @@
+
+struct node_out_t {
+    double   nav_long;
+    double   nav_lat;
+    double   nav_depth;
+    string   node_report_local
+}

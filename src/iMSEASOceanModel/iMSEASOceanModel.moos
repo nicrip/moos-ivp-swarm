@@ -1,0 +1,22 @@
+MOOSTimeWarp = 60
+
+//------------------------------------------------
+// iMSEASOceanModel config block
+
+ProcessConfig = iMSEASOceanModel
+{
+   AppTick   = 4
+   CommsTick = 4
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+}
+
+//------------------------------------------------
+// iMSEASOceanModel2 config block
+
+ProcessConfig = iMSEASOceanModel2
+{
+   AppTick   = 4
+   CommsTick = 4
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+}
+

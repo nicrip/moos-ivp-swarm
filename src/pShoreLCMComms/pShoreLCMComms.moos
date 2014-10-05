@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pShoreLCMComms config block
+
+ProcessConfig = pShoreLCMComms
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

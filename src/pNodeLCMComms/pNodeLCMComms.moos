@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pNodeLCMComms config block
+
+ProcessConfig = pNodeLCMComms
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

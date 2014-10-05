@@ -1,0 +1,195 @@
+//*******************************************************
+// ShoreSide Configuration File
+
+ServerHost = localhost
+ServerPort = 9000
+Community  = shoreside
+LatOrigin  = 39.0
+LongOrigin = -73.0
+//LatOrigin  = 42.3584
+//LongOrigin = -71.08745
+MOOSTimeWarp = 60
+
+//--------------------------------------------------------
+Processconfig = ANTLER
+{
+  MSBetweenLaunches = 400
+
+  //Run = MOOSDB              		@ NewConsole = false
+  Run = pMarineViewer       		@ NewConsole = false
+  Run = pMSEASOceanModelGridRender	@ NewConsole = false
+  Run = pMSEASOceanModelGridRender	@ NewConsole = false ~pMSEASOceanModelGridRender1
+  Run = iMSEASOceanModel		@ NewConsole = false
+  Run = iMSEASOceanModel		@ NewConsole = false ~iMSEASOceanModel1
+}
+
+//------------------------------------------------
+// pMSEASOceanModelGridRender config block
+
+ProcessConfig = pMSEASOceanModelGridRender
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   ORIGIN_LON 		= -73.0
+   ORIGIN_LAT 		= 39.0
+   DEPTH 		= 100.0
+   GRID_NUM_X 		= 10
+   GRID_NUM_Y 		= 10
+   GRID_WIDTH_SPACE 	= 100.0
+   GRID_HEIGHT_SPACE 	= -100.0
+   GRID_MIN_VALUE	= 10.0
+   GRID_MAX_VALUE	= 20.0
+   VARNAME_REQUEST	= meridional velocity
+   FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+   TIME_OFFSET_REQUEST	= 0.0
+   MOOSVAR_PREFIX	= GRID_
+}
+
+//------------------------------------------------
+// pMSEASOceanModelGridRender1 config block
+
+ProcessConfig = pMSEASOceanModelGridRender1
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   ORIGIN_LON 		= -72.98845867
+   ORIGIN_LAT 		= 38.99980151
+   DEPTH 		= 100.0
+   GRID_NUM_X 		= 3
+   GRID_NUM_Y 		= 3
+   GRID_WIDTH_SPACE 	= 100.0
+   GRID_HEIGHT_SPACE 	= -100.0
+   GRID_MIN_VALUE	= 10.0
+   GRID_MAX_VALUE	= 20.0
+   VARNAME_REQUEST	= meridional velocity
+   FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+   TIME_OFFSET_REQUEST	= 0.0
+   MOOSVAR_PREFIX	= GRID1_
+}
+
+//------------------------------------------------
+// pMSEASOceanModelGridRender2 config block
+
+ProcessConfig = pMSEASOceanModelGridRender2
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   ORIGIN_LON 		= -73.0
+   ORIGIN_LAT 		= 39.0
+   DEPTH 		= 100.0
+   GRID_NUM_X 		= 10
+   GRID_NUM_Y 		= 10
+   GRID_WIDTH_SPACE 	= 100.0
+   GRID_HEIGHT_SPACE 	= -100.0
+   GRID_MIN_VALUE	= 10.0
+   GRID_MAX_VALUE	= 20.0
+   VARNAME_REQUEST	= meridional velocity
+   FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+   TIME_OFFSET_REQUEST	= 0.0
+   MOOSVAR_PREFIX	= GRID2_
+}
+
+//------------------------------------------------
+// pMSEASOceanModelGridRender3 config block
+
+ProcessConfig = pMSEASOceanModelGridRender3
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   ORIGIN_LON 		= -73.0
+   ORIGIN_LAT 		= 39.0
+   DEPTH 		= 100.0
+   GRID_NUM_X 		= 10
+   GRID_NUM_Y 		= 10
+   GRID_WIDTH_SPACE 	= 100.0
+   GRID_HEIGHT_SPACE 	= -100.0
+   GRID_MIN_VALUE	= 10.0
+   GRID_MAX_VALUE	= 20.0
+   VARNAME_REQUEST	= meridional velocity
+   FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+   TIME_OFFSET_REQUEST	= 0.0
+   MOOSVAR_PREFIX	= GRID3_
+}
+
+//------------------------------------------------
+// iMSEASOceanModel config block
+
+ProcessConfig = iMSEASOceanModel
+{
+   AppTick   = 4
+   CommsTick = 4
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   MOOSVAR_PREFIX = GRID_
+}
+
+//------------------------------------------------
+// iMSEASOceanModel config block
+
+ProcessConfig = iMSEASOceanModel1
+{
+   AppTick   = 4
+   CommsTick = 4
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   MOOSVAR_PREFIX = GRID1_
+}
+
+//------------------------------------------------
+// iMSEASOceanModel config block
+
+ProcessConfig = iMSEASOceanModel2
+{
+   AppTick   = 4
+   CommsTick = 4
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   MOOSVAR_PREFIX = GRID2_
+}
+
+//------------------------------------------------
+// iMSEASOceanModel config block
+
+ProcessConfig = iMSEASOceanModel3
+{
+   AppTick   = 4
+   CommsTick = 4
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   MOOSVAR_PREFIX = GRID3_
+}
+
+//------------------------------------------------
+// pMarineViewer config block
+
+ProcessConfig = pMarineViewer
+{
+  AppTick    = 4
+  CommsTick  = 4
+
+  TIFF_FILE            = AerialMIT.tif
+  set_pan_x            = -30
+  set_pan_y            = 60
+  zoom                 = 2.3
+  vehicles_shape_scale = 1.5
+  vehicles_name_mode   = names+shortmode
+  marker_viewable_labels = false
+
+  appcast_width = 30
+
+  appcast_viewable     = true
+  appcast_color_scheme = indigo
+
+  SCOPE = HAZARDSET_REPORT
+
+  //ACTION = STATION_ALL = true
+
+  button_one   = DEPLOY_ALL  # DEPLOY_ALL=true 
+  button_one   = MOOS_MANUAL_OVERIDE_ALL=false 
+  button_one   = RETURN_ALL=false
+  button_one   = FRONT_SURVEY=true
+  button_two   = RETURN_ALL  # RETURN_ALL=true
+
+  button_three = ALLSTOP  # DEPLOY_ALL=false
+  button_four  = SHOW:both   # FGR_SHOW=both
+}

@@ -1,0 +1,10 @@
+//------------------------------------------------
+// iMSEASOceanModel config block
+
+ProcessConfig = iMSEASOceanModel
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+}

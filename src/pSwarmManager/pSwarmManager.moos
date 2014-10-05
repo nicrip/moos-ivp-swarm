@@ -1,0 +1,16 @@
+//------------------------------------------------
+// pSwarmManager config block
+
+ProcessConfig = pSwarmManager
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   MSEAS_FILEPATH	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+   MSEAS_TIME_OFFSET	= 0.0
+   NODE_PREFIX		= NODE_
+   NODE_START_INDEX	= 0
+   NODE_END_INDEX	= 8
+   SWARM_SUBSET_PREFIX	= TOP_LEFT_
+}
+
