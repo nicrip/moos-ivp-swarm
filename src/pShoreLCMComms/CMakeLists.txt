@@ -19,5 +19,6 @@ TARGET_LINK_LIBRARIES(pShoreLCMComms
    ${MOOS_LIBRARIES}
    mbutil
    m
-   pthread)
+   pthread
+   lcm)
 

@@ -9,6 +9,9 @@
 #define NodeLCMComms_HEADER
 
 #include "MOOS/libMOOS/MOOSLib.h"
+#include <lcm/lcm-cpp.hpp>
+#include "node_in_t.hpp"
+#include "node_out_t.hpp"
 
 class NodeLCMComms : public CMOOSApp
 {
@@ -30,4 +33,4 @@ class NodeLCMComms : public CMOOSApp
    double       m_timewarp;
 };
 
-#endif 
+#endif
