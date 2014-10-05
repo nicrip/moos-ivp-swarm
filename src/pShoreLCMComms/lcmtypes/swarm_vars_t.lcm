@@ -1,7 +1,0 @@
-
-struct swarm_vars_t {
-    int32_t  num_nodes;
-    double   nav_long[num_nodes];
-    double   nav_lat[num_nodes];
-    double   nav_depth[num_nodes];
-}
