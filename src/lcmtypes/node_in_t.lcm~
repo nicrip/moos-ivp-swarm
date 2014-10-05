@@ -1,5 +1,0 @@
-
-struct node_in_t {
-    double   drift_x;
-    double   drift_y;
-};
