@@ -1,7 +1,9 @@
 
 struct node_out_t {
+    string   node_name;
     double   nav_long;
     double   nav_lat;
     double   nav_depth;
     string   node_report_local;
+    string   appcast;
 }

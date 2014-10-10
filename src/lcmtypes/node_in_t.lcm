@@ -2,4 +2,7 @@
 struct node_in_t {
     double   drift_x;
     double   drift_y;
+    string   deploy_str;
+    string   return_str;
+    string   moos_manual_override_str;
 }

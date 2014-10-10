@@ -11,8 +11,6 @@ SET(SRC
   main.cpp
 )
 
-
-
 ADD_EXECUTABLE(pNodeLCMComms ${SRC})
 
 TARGET_LINK_LIBRARIES(pNodeLCMComms

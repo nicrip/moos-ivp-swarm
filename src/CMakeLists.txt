@@ -16,13 +16,15 @@ INCLUDE_DIRECTORIES(${LOCAL_LIBRARY_DIRS})
 #============================================================================
 find_package(Octave REQUIRED)
 include_directories(${Octave_INCLUDE_DIRS})
+ADD_SUBDIRECTORY(lcmtypes)
 ADD_SUBDIRECTORY(iMSEASOceanModel)
 ADD_SUBDIRECTORY(pMSEASOceanModelGridRender)
 ADD_SUBDIRECTORY(pNodeManager)
 ADD_SUBDIRECTORY(pSwarmManager)
 ADD_SUBDIRECTORY(pNodeLCMComms)
 ADD_SUBDIRECTORY(pShoreLCMComms)
-ADD_SUBDIRECTORY(lcmtypes)
+ADD_SUBDIRECTORY(pLCMOceanModelMgr)
+ADD_SUBDIRECTORY(pLCMNodeMgr)
 
 ##############################################################################
 #                           END of CMakeLists.txt

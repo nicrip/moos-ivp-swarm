@@ -32,6 +32,25 @@ SET(USE_ASYNC_COMMS ON)
 find_package(MOOS 10.0)
 INCLUDE_DIRECTORIES(${MOOS_INCLUDE_DIRS})
 
+function(cache_internal_append_unique VAR_NAME)
+
+    if(NOT ARGN)
+        message(SEND_ERROR "Error: cache_internal_append_unique() called without any elements")
+        return()
+    endif()
+  
+    foreach(ELEMENT ${ARGN})
+        list(APPEND ${VAR_NAME} ${ELEMENT})
+    endforeach()
+  
+    list(REMOVE_DUPLICATES ${VAR_NAME})
+    set(${VAR_NAME} ${${VAR_NAME}} CACHE INTERNAL "")
+  
+endfunction()
+
+cache_internal_append_unique(PROJECT_EXPORT_DEFINES ASYNCHRONOUS_CLIENT)
+ADD_DEFINITIONS(-DASYNCHRONOUS_CLIENT)
+
 #===============================================================================
 # FINDING MOOSGeodesy' HEADERS AND LIBRARIES...
 #===============================================================================

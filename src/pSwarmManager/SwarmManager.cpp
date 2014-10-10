@@ -244,18 +244,31 @@ bool SwarmManager::OnStartUp()
 
   m_timewarp = GetMOOSTimeWarp();
 
-  RegisterVariables();
-  return(true);
-}
-
-//---------------------------------------------------------
-// Procedure: RegisterVariables
-
-void SwarmManager::RegisterVariables()
-{
-  // m_Comms.Register("FOOBAR", 0);
-  stringstream ss;
   stringstream varname_v_ss, varname_u_ss;
+  for(unsigned int i=0; i<m_num_nodes; i++) {
+    if (i != m_num_nodes-1) {
+      varname_v_ss << "v,";
+      varname_u_ss << "u,";
+    } else {
+      varname_v_ss << "v,";
+      varname_u_ss << "u";
+    }
+  }
+  cout << m_num_nodes << endl;
+  cout << varname_u_ss.str() << endl;
+  cout << varname_v_ss.str() << endl;
+  varname_v_ss << varname_u_ss.str();
+  m_model_varnames = varname_v_ss.str();
+  cout << m_model_varnames << endl;
+  cout << varname_v_ss.str() << endl;
+  varname_v_ss.str("");
+  varname_v_ss.clear();
+  varname_u_ss.str("");
+  varname_u_ss.clear();
+
+  RegisterVariables();
+
+  //stringstream ss;
   for(unsigned int i=0; i<m_num_nodes; i++) {
     ss << "NAV_LONG_" << m_node_prefix << (m_start_node_idx + i);
     m_Comms.Register(ss.str(), 0);
@@ -265,16 +278,17 @@ void SwarmManager::RegisterVariables()
     m_Comms.Register(ss.str(), 0);
     ss.str("");
     ss.clear();
-    if (i != m_num_nodes-1) {
-      varname_v_ss << "v,";
-      varname_u_ss << "u,";
-    } else {
-      varname_v_ss << "v,";
-      varname_u_ss << "u";
-    }
   }
-  varname_v_ss << varname_u_ss.str();
-  m_model_varnames = varname_v_ss.str();
+
+  return(true);
+}
+
+//---------------------------------------------------------
+// Procedure: RegisterVariables
+
+void SwarmManager::RegisterVariables()
+{
+  // m_Comms.Register("FOOBAR", 0);
   m_Comms.Register(m_model_return_moosvar, 0);
 }
 

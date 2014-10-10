@@ -54,6 +54,7 @@ for ((i = 0; i < $SWARM_NUM_NODES; i++))
 do
   NODE_NAME="$SWARM_PREFIX$i"
   pAntler ./node_moos/targ_$NODE_NAME.moos >& ./node_output/$NODE_NAME.out &
+  sleep 0.1
 done
 
 echo "Launched $SWARM_NUM_NODES nodes."
