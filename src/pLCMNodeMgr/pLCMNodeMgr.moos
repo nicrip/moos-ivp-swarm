@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pLCMNodeMgr config block
+
+ProcessConfig = pLCMNodeMgr
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pLCMOceanModelMgr config block
+
+ProcessConfig = pLCMOceanModelMgr
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+
