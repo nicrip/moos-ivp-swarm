@@ -1,0 +1,18 @@
+//------------------------------------------------------
+// uSimMarine Configuration Block  (Created from plugin)
+
+ProcessConfig = uSimMarine
+{
+  AppTick   = 10
+  CommsTick = 10
+
+  START_POS = $(START_POS), 180, 0
+  PREFIX    = NAV
+
+  ROTATE_SPEED = 0.9
+  DRIFT_X   = 1
+  DRIFT_Y   = 0.5
+
+  //thrust_map = -100:-2, 0:0, 20:1, 40:2, 60:3, 80:5, 100:5
+  //thrust_map = -100:-2, 0:0, 20:1, 40:2, 60:3, 80:5, 100:5
+}

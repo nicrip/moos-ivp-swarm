@@ -1,0 +1,119 @@
+//*******************************************************
+// Node Configuration File
+//
+
+ServerHost = localhost
+ServerPort = 9100
+Simulator  = true
+Community  = NODE_0
+
+MOOSTimeWarp = 10
+
+// MSEAS Ocean Model Position
+LatOrigin  =  39.000000	
+LongOrigin = -73.000000
+
+//------------------------------------------------------------
+Processconfig = ANTLER
+{
+  MSBetweenLaunches = 100
+
+  Run = MOOSDB             @ NewConsole = false
+  Run = uSimMarine         @ NewConsole = false
+  Run = pNodeReporter      @ NewConsole = false
+  Run = pMarinePID         @ NewConsole = false
+  Run = pHelmIvP           @ NewConsole = true
+  Run = pNodeLCMComms      @ NewConsole = true
+}
+
+//------------------------------------------------------
+// uSimMarine Configuration Block
+
+ProcessConfig = uSimMarine
+{
+  AppTick   = 10
+  CommsTick = 10
+
+  START_POS = 0, 0, 180, 0
+  PREFIX    = NAV
+
+  ROTATE_SPEED = 0.9
+  DRIFT_X   = 1
+  DRIFT_Y   = 0.5
+}
+
+//--------------------------------------------------------
+// pNodeReporter Configuration Block
+
+ProcessConfig = pNodeReporter
+{
+  AppTick     = 2
+  CommsTick   = 2
+  
+  VESSEL_TYPE = kayak
+}
+
+//-----------------------------------------------------
+// pMarinePID Configuration Block
+
+ProcessConfig = pMarinePID
+{
+  AppTick    = 10
+  CommsTick  = 10
+  
+  VERBOSE       = true
+  DEPTH_CONTROL = false
+  ACTIVE_START  = true
+  
+  // Yaw PID controller
+  YAW_PID_KP             = 0.35
+  YAW_PID_KD             = 0.0
+  YAW_PID_KI             = 0.0
+  YAW_PID_INTEGRAL_LIMIT = 0.07
+  
+  // Speed PID controller
+  SPEED_PID_KP           = 1.0
+  SPEED_PID_KD           = 0.0
+  SPEED_PID_KI           = 0.0
+  SPEED_PID_INTEGRAL_LIMIT = 0.07
+  
+  // Maximums
+  MAXRUDDER  = 100
+  MAXTHRUST  = 100
+  
+  // A non-zero SPEED_FACTOR overrides use of SPEED_PID
+  // Will set DESIRED_THRUST = DESIRED_SPEED * SPEED_FACTOR
+  //SPEED_FACTOR = 40
+}
+
+//----------------------------------------------------
+// pHelmIvP Configuration Block
+
+ProcessConfig = pHelmIvP
+{
+  AppTick    = 2
+  CommsTick  = 2
+
+  Behaviors    = node.bhv
+  Verbose      = false
+  Domain       = course:0:359:360
+  Domain       = speed:0:5:26
+
+  ok_skew      = any
+
+#ifdef VTYPE UUV
+  Domain       = depth:0:10:101
+#endif
+}
+
+//------------------------------------------------
+// pNodeLCMComms config block
+
+ProcessConfig = pNodeLCMComms
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   NODE_NAME = NODE_0
+}
+

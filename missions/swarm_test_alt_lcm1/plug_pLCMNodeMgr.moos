@@ -1,0 +1,10 @@
+//------------------------------------------------
+// pLCMNodeMgr config block (Created from plugin)
+
+ProcessConfig = pLCMNodeMgr
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   NODE_NAME = $(NODE_NAME)
+}

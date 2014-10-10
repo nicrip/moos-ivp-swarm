@@ -1,0 +1,10 @@
+//--------------------------------------------------
+// pHostInfo configuration block from plugin
+
+ProcessConfig = pHostInfo
+{
+  AppTick 	 = 2
+  CommsTick 	 = 2
+
+  DEFAULT_HOSTIP = localhost
+}

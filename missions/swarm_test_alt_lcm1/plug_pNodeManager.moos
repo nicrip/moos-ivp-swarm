@@ -1,0 +1,11 @@
+//------------------------------------------------
+// pNodeManager config block
+
+ProcessConfig = pNodeManager
+{
+   AppTick   = 4
+   CommsTick = 4
+
+   FILEPATH  = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+}
+
