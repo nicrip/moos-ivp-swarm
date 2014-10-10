@@ -1,0 +1,5 @@
+struct node_nav_t {
+    double   nav_long;
+    double   nav_lat;
+    double   nav_depth;
+}
