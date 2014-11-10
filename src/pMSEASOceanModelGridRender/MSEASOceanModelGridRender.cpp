@@ -9,6 +9,7 @@
 #include "MBUtils.h"
 #include "MSEASOceanModelGridRender.h"
 #include "XYFormatUtilsConvexGrid.h"
+#include <math.h>
 
 using namespace std;
 
@@ -41,17 +42,41 @@ bool MSEASOceanModelGridRender::OnNewMail(MOOSMSG_LIST &NewMail)
     if (msg.GetKey() == m_model_return_moosvar) {
       cout << "RECEIVED RETURN DATA" << endl;
       int num_values = p->GetBinaryDataSize()/sizeof(double);
-      int num_rows = num_values;
-      Matrix a(num_rows, 1);
+      int num_cols = num_values/m_varnames_size;
+      Matrix a(m_varnames_size, num_cols);
       double *a_data = a.fortran_vec();
       memcpy(a_data, p->GetBinaryData(), p->GetBinaryDataSize());
       m_model_values_return = a;
+      cout << m_model_values_return << endl;
       // update grid values
       unsigned int i, gsize = m_grid.size();
+      stringstream iss;
       for(i=0; i<gsize; i++) {
         double cx = m_grid.getElement(i).getCenterX();
         double cy = m_grid.getElement(i).getCenterY();
-        m_grid.setVal(i, m_model_values_return(i));
+        m_vector_field[i].setPosition(cx,cy);
+        double dx = m_model_values_return(0,i);
+        double dy = m_model_values_return(1,i);
+        if (dx < 0) {
+          dx = pow(dx, m_vector_power)*m_vector_scale;
+          if (dx > 0) dx = -dx;
+        } else {
+          dx = pow(dx, m_vector_power)*m_vector_scale;
+        }
+        if (dy < 0) {
+          dy = -pow(dy, m_vector_power)*m_vector_scale;
+          if (dy > 0) dy = -dy;
+        } else {
+          dy = pow(dy, m_vector_power)*m_vector_scale;
+        }
+        m_vector_field[i].setVectorXY(dx, dy);
+        iss << m_moosvar_prefix << i;
+        m_vector_field[i].set_label(iss.str());
+        iss.clear();
+        iss.str("");
+        string spec = m_vector_field[i].get_spec();
+        m_Comms.Notify("VIEW_VECTOR", spec);
+        m_grid.setVal(i, m_model_values_return(0,i));
         //cout << cx << " " << cy << " " << m_grid.getVal(i) << endl;
       }
       //post grid for viewing
@@ -104,9 +129,9 @@ bool MSEASOceanModelGridRender::Iterate()
 
   //cout << "REQUESTING GRID DATA" << endl;
   m_Comms.Notify(m_positions_moosvar, (unsigned char*) m_model_pos_request_data_ptr, (unsigned int) ((m_grid_num_els*3)*sizeof(double))); // Matrix of lon, lat, depth positions
-  m_Comms.Notify(m_varname_moosvar, m_varname_request);                                                                                   // name of desired model variable
+  //m_Comms.Notify(m_varname_moosvar, m_varname_request);                                                                                   // name of desired model variable
   //m_Comms.Notify(m_time_request_offset_moosvar, m_time_offset_request);                                                                   // offset in seconds from start of MSEAS model file
-  m_Comms.Notify(m_filepath_moosvar, m_filepath_request);                                                                                 // filepath of MSEAS model file - when msg received, request is performed
+  //m_Comms.Notify(m_filepath_moosvar, m_filepath_request);                                                                                 // filepath of MSEAS model file - when msg received, request is performed
 
   return(true);
 }
@@ -215,6 +240,16 @@ bool MSEASOceanModelGridRender::OnStartUp()
     m_moosvar_prefix = "";
   }
 
+  if (!m_MissionReader.GetConfigurationParam("VECTOR_POWER", m_vector_power)) {
+    cerr << "Vector power VECTOR_POWER not specified! Assuming power 2.0..." << endl;
+    m_vector_power = 2.0;
+  }
+
+  if (!m_MissionReader.GetConfigurationParam("VECTOR_SCALE", m_vector_scale)) {
+    cerr << "Vector scale VECTOR_SCALE not specified! Assuming scale 1.0..." << endl;
+    m_vector_scale = 1.0;
+  }
+
   if (!m_MissionReader.GetValue("LatOrigin", m_global_lat_origin)) {
     cerr << "MOOS GLOBAL variable latitude origin LatOrigin not specified! Quitting..." << endl;
     return(false);
@@ -277,11 +312,13 @@ bool MSEASOceanModelGridRender::OnStartUp()
   m_Comms.Notify(m_positions_moosvar, (unsigned char*) m_model_pos_request_data_ptr, (unsigned int) ((m_grid_num_els*3)*sizeof(double)));
   m_Comms.Notify(m_varname_moosvar, m_varname_request);
   m_Comms.Notify(m_time_request_offset_moosvar, m_time_offset_request);
-  m_Comms.Notify(m_filepath_moosvar, m_filepath_request);
+  vector<string> model_varname_vec_request = parseString(m_varname_request, ',');
+  m_varnames_size = model_varname_vec_request.size();
 
   // set up grid for rendering
   double width = m_grid_num_x_els*m_grid_width_space;
   double height = m_grid_num_y_els*m_grid_height_space;
+  m_vector_field.resize(m_grid_num_x_els*m_grid_num_y_els);
   double tl_x, tl_y;
   m_geodesy.LatLong2LocalUTM(m_global_lat_origin, m_global_lon_origin, tl_y, tl_x);
   tl_x = -tl_x;

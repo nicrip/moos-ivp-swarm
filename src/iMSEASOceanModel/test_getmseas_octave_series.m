@@ -6,11 +6,11 @@ lat = 39;
 depth = 40;
 time = [2006, 8, 30, 3, 0, 0];
 
-readmseaspe_octave({'/home/rypkema/Workspace/mseas_data/pe_out_ts.nc', '/home/rypkema/Workspace/mseas_data/pe_out_vrot.nc'});
 tic()
+readmseaspe_octave_steph('/home/rypkema/Workspace/mseas_data/pe_out_vrot.nc');
 for i = 1:400
-  readmseaspe_octave(vel,lon,lat,depth,time);
+  readmseaspe_octave_steph(vel,lon,lat,depth,time);
 end
+readmseaspe_octave_steph();
 time_ser = toc()
-readmseaspe_octave();
 time_ser

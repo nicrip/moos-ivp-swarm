@@ -8,7 +8,7 @@ LatOrigin  = 39.0
 LongOrigin = -73.0
 //LatOrigin  = 42.3584
 //LongOrigin = -71.08745
-MOOSTimeWarp = 60
+MOOSTimeWarp = 120
 
 //--------------------------------------------------------
 Processconfig = ANTLER
@@ -34,16 +34,18 @@ ProcessConfig = pMSEASOceanModelGridRender
    ORIGIN_LON 		= -73.0
    ORIGIN_LAT 		= 39.0
    DEPTH 		= 100.0
-   GRID_NUM_X 		= 10
-   GRID_NUM_Y 		= 10
-   GRID_WIDTH_SPACE 	= 100.0
-   GRID_HEIGHT_SPACE 	= -100.0
+   GRID_NUM_X 		= 30
+   GRID_NUM_Y 		= 30
+   GRID_WIDTH_SPACE 	= 1000.0
+   GRID_HEIGHT_SPACE 	= -1000.0
    GRID_MIN_VALUE	= 10.0
    GRID_MAX_VALUE	= 20.0
-   VARNAME_REQUEST	= meridional velocity
+   VARNAME_REQUEST	= u,v
    FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
    TIME_OFFSET_REQUEST	= 0.0
    MOOSVAR_PREFIX	= GRID_
+   VECTOR_POWER		= 1.0
+   VECTOR_SCALE		= 20.0
 }
 
 //------------------------------------------------
@@ -63,7 +65,7 @@ ProcessConfig = pMSEASOceanModelGridRender1
    GRID_HEIGHT_SPACE 	= -100.0
    GRID_MIN_VALUE	= 10.0
    GRID_MAX_VALUE	= 20.0
-   VARNAME_REQUEST	= meridional velocity
+   VARNAME_REQUEST	= u,v
    FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
    TIME_OFFSET_REQUEST	= 0.0
    MOOSVAR_PREFIX	= GRID1_
@@ -86,7 +88,7 @@ ProcessConfig = pMSEASOceanModelGridRender2
    GRID_HEIGHT_SPACE 	= -100.0
    GRID_MIN_VALUE	= 10.0
    GRID_MAX_VALUE	= 20.0
-   VARNAME_REQUEST	= meridional velocity
+   VARNAME_REQUEST	= u,v
    FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
    TIME_OFFSET_REQUEST	= 0.0
    MOOSVAR_PREFIX	= GRID2_
@@ -109,7 +111,7 @@ ProcessConfig = pMSEASOceanModelGridRender3
    GRID_HEIGHT_SPACE 	= -100.0
    GRID_MIN_VALUE	= 10.0
    GRID_MAX_VALUE	= 20.0
-   VARNAME_REQUEST	= meridional velocity
+   VARNAME_REQUEST	= u,v
    FILEPATH_REQUEST	= /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
    TIME_OFFSET_REQUEST	= 0.0
    MOOSVAR_PREFIX	= GRID3_
@@ -122,8 +124,9 @@ ProcessConfig = iMSEASOceanModel
 {
    AppTick   = 4
    CommsTick = 4
-   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModel
    MOOSVAR_PREFIX = GRID_
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
 }
 
 //------------------------------------------------
@@ -133,8 +136,9 @@ ProcessConfig = iMSEASOceanModel1
 {
    AppTick   = 4
    CommsTick = 4
-   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModel
    MOOSVAR_PREFIX = GRID1_
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
 }
 
 //------------------------------------------------
@@ -144,8 +148,9 @@ ProcessConfig = iMSEASOceanModel2
 {
    AppTick   = 4
    CommsTick = 4
-   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModel
    MOOSVAR_PREFIX = GRID2_
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
 }
 
 //------------------------------------------------
@@ -155,8 +160,9 @@ ProcessConfig = iMSEASOceanModel3
 {
    AppTick   = 4
    CommsTick = 4
-   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModel
    MOOSVAR_PREFIX = GRID3_
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
 }
 
 //------------------------------------------------

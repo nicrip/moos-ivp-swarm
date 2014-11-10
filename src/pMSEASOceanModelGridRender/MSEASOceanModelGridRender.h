@@ -11,6 +11,7 @@
 #include "MOOS/libMOOS/MOOSLib.h"
 #include "MOOS/libMOOSGeodesy/MOOSGeodesy.h"
 #include "XYConvexGrid.h"
+#include "XYVector.h"
 #include <octave/oct.h>
 #include <octave/octave.h>
 #include <octave/parse.h>
@@ -59,8 +60,12 @@ class MSEASOceanModelGridRender : public CMOOSApp
   std::string     m_time_offset_reset_moosvar;
   std::string     m_model_return_moosvar;
   XYConvexGrid    m_grid;
+  std::vector<XYVector> m_vector_field;
   double          m_global_lon_origin;
   double          m_global_lat_origin;
+  int             m_varnames_size;
+  double          m_vector_power;
+  double          m_vector_scale;
 };
 
 #endif

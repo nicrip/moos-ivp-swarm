@@ -7,7 +7,8 @@ ProcessConfig = iMSEASOceanModel
 {
    AppTick   = 4
    CommsTick = 4
-   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModel
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
 }
 
 //------------------------------------------------
@@ -17,6 +18,7 @@ ProcessConfig = iMSEASOceanModel2
 {
    AppTick   = 4
    CommsTick = 4
-   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-rypkema/src/iMSEASOceanModel
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModel
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
 }
 
