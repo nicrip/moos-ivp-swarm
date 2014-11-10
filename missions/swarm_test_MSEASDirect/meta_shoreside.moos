@@ -1,0 +1,232 @@
+//*******************************************************
+// ShoreSide Configuration File
+//
+
+ServerHost = localhost
+ServerPort = $(SPORT)
+Community  = $(SNAME)
+
+//origin and timewarp
+#include plug_origin_warp.moos
+//--------------------------------------------------------
+Processconfig = ANTLER
+{
+  MSBetweenLaunches = 1000
+
+  Run = MOOSDB              @ NewConsole = false
+  Run = pMarineViewer       @ NewConsole = false
+  Run = pShare              @ NewConsole = false
+  Run = pHostInfo           @ NewConsole = false
+  Run = uFldShoreBroker     @ NewConsole = false
+  Run = iMSEASOceanModelDirect @ NewConsole = false
+}
+
+//------------------------------------------------
+// iMSEASOceanModelDirect config block
+
+ProcessConfig = iMSEASOceanModelDirect
+{
+   AppTick   = 10
+   CommsTick = 10
+
+   OCTAVE_PATH = /home/rypkema/Workspace/moos-ivp-swarm/src/iMSEASOceanModelDirect
+   MSEAS_FILEPATH = /home/rypkema/Workspace/mseas_data/pe_out_vrot.nc
+   MSEAS_VARNAMES = u,v
+   MSEAS_TIME_OFFSET = 0.0
+   MODEL_TIME_WARP = 1.0
+   NODE_COMMUNITIES = NODE_0,NODE_1,NODE_2,NODE_3,NODE_4,NODE_5,NODE_6,NODE_7,NODE_8,NODE_9,NODE_10,NODE_11,NODE_12,NODE_13,NODE_14,NODE_15,NODE_16,NODE_17,NODE_18,NODE_19,NODE_20,NODE_21,NODE_22,NODE_23,NODE_24,NODE_25,NODE_26,NODE_27,NODE_28,NODE_29,NODE_30,NODE_31,NODE_32,NODE_33,NODE_34,NODE_35
+//,NODE_36,NODE_37,NODE_38,NODE_39,NODE_40,NODE_41,NODE_42,NODE_43,NODE_44,NODE_45,NODE_46,NODE_47,NODE_48,NODE_49,NODE_50,NODE_51,NODE_52,NODE_53,NODE_54,NODE_55,NODE_56,NODE_57,NODE_58,NODE_59,NODE_60,NODE_61,NODE_62,NODE_63,NODE_64,NODE_65,NODE_66,NODE_67,NODE_68,NODE_69,NODE_70,NODE_71,NODE_72,NODE_73,NODE_74,NODE_75,NODE_76,NODE_77,NODE_78,NODE_79,NODE_80,NODE_81,NODE_82,NODE_83,NODE_84,NODE_85,NODE_86,NODE_87,NODE_88,NODE_89,NODE_90,NODE_91,NODE_92,NODE_93,NODE_94,NODE_95,NODE_96,NODE_97,NODE_98,NODE_99
+}
+
+
+//--------------------------------------------------------
+// pMarineViewer Configuration Block
+
+ProcessConfig = pMarineViewer
+{
+  AppTick    = 4
+  CommsTick  = 4
+
+  //TIFF_FILE            = /home/rypkema/Workspace/moos-ivp-rypkema/39_73.tif
+  set_pan_x            = -30
+  set_pan_y            = 0
+  zoom                 = 1.8
+  vehicles_shape_scale = 1.5
+  vehicles_name_viewable = names
+  polygon_viewable_labels = false
+  point_viewable_labels = false
+  seglist_viewable_labels = false
+  tiff_viewable = false
+
+  left_context[return_archie]  = RETURN_UPDATES_ARCHIE = point=$(XPOS),$(YPOS)
+  left_context[return_archie]  = RETURN_ARCHIE  = true
+  left_context[return_archie]  = STATION_ARCHIE = false
+  left_context[return_archie]  = DEPLOY_ARCHIE  = true
+
+  left_context[return_betty]  = RETURN_UPDATES_BETTY = point=$(XPOS),$(YPOS)
+  left_context[return_betty]  = RETURN_BETTY  = true
+  left_context[return_betty]  = STATION_BETTY = false
+  left_context[return_betty]  = DEPLOY_BETTY  = true
+
+  SCOPE = PHI_HOST_INFO
+
+  ACTION  = STATION_ARCHIE = false
+  ACTION  = STATION_ARCHIE = true
+  ACTION  = RETURN_ARCHIE  = false
+  ACTION  = RETURN_ARCHIE  = true
+  ACTION  = DEPLOY_ARCHIE  = false
+  ACTION+ = DEPLOY_ARCHIE  = true
+
+  ACTION  = STATION_BETTY = false
+  ACTION  = STATION_BETTY = true
+  ACTION  = RETURN_BETTY  = false
+  ACTION  = RETURN_BETTY  = true
+  ACTION  = DEPLOY_BETTY  = false
+  ACTION+ = DEPLOY_BETTY  = true
+
+  ACTION  = MENU_KEY=CONFIG-1 # LOITER_UPDATES_ARCHIE = center_assign=$(LOITER_PT1)
+  ACTION+ = MENU_KEY=CONFIG-1 # LOITER_UPDATES_BETTY  = center_assign=$(LOITER_PT2)
+
+  ACTION  = MENU_KEY=CONFIG-2 # LOITER_UPDATES_ARCHIE = center_assign=$(LOITER_PT2)
+  ACTION+ = MENU_KEY=CONFIG-2 # LOITER_UPDATES_BETTY  = center_assign=$(LOITER_PT1)
+
+  ACTION  = COLL_AVD_ALL = true
+  ACTION+ = COLL_AVD_ALL = false
+
+  BUTTON_ONE   = DEPLOY  # DEPLOY_ALL=true 
+  BUTTON_ONE   = LOITER_ALL=true
+  BUTTON_ONE   = MOOS_MANUAL_OVERIDE_ALL=false 
+  BUTTON_ONE   = RETURN_ALL=false
+  BUTTON_ONE   = STATION_ALL=false
+
+  BUTTON_TWO   = RETURN  # RETURN_ALL=true
+  BUTTON_TWO   = LOITER_ALL=false
+  BUTTON_TWO   = MOOS_MANUAL_OVERIDE_ALL=false
+  BUTTON_TWO   = DEPLOY_ALL=true
+  BUTTON_TWO   = STATION_ALL=false
+  BUTTON_TWO   = SPIRALCW = false
+  BUTTON_TWO   = SPIRALCCW = false
+  BUTTON_TWO   = SEARCH_FIRST = false
+  BUTTON_TWO   = SEARCH_SECOND = false
+
+  BUTTON_THREE = STATION-NOW  # STATION_ALL=true
+  BUTTON_THREE  = LOITER_ALL=false
+  BUTTON_THREE = MOOS_MANUAL_OVERIDE_ALL=false 
+  BUTTON_THREE = RETURN_ALL=false
+  BUTTON_THREE = DEPLOY_ALL=true
+
+  BUTTON_FOUR  = ALL-STOP # MOOS_MANUAL_OVERIDE_ALL=true
+  BUTTON_FOUR  = LOITER_ALL=false
+  BUTTON_FOUR  = RETURN_ALL=false
+  BUTTON_FOUR  = DEPLOY_ALL=false
+  BUTTON_FOUR  = STATION_ALL=false 
+
+  // Appcast configuration
+  appcast_height       = 75
+  appcast_width        = 30
+  appcast_viewable     = true
+  appcast_color_scheme = indigo
+  nodes_font_size      = medium
+  procs_font_size      = medium
+  appcast_font_size    = small
+  appcast_viewable     = true
+}
+
+//---------------------------------------------------------
+// pShare Config Block
+
+ProcessConfig = pShare
+{
+  AppTick    = 2
+  CommsTick  = 2
+
+  input = route = $(MULTICAST)
+}
+
+//--------------------------------------------------
+// pHostInfo configuration block
+
+ProcessConfig = pHostInfo
+{
+  AppTick 	= 2
+  CommsTick 	= 2
+
+  DEFAULT_HOSTIP = localhost
+}
+
+
+//--------------------------------------------------
+// uFldShoreBroker Configuration Block
+
+ProcessConfig = uFldShoreBroker
+{
+  AppTick       = 10
+  CommsTick     = 10
+
+  QBRIDGE  = DEPLOY, RETURN, STATION, MOOS_MANUAL_OVERIDE, RETURN_UPDATES
+  QBRIDGE  = NODE_REPORT, NODE_MESSAGE, LOITER, COLL_AVD
+  //QBRIDGE  = DRIFT_X, DRIFT_Y
+
+  BRIDGE   = src=UP_STATION_$N, alias=UP_STATION
+  BRIDGE   = src=LOITER_UPDATES_$V, alias=LOITER_UPDATES
+  BRIDGE   = src=APPCAST_REQ
+  BRIDGE   = src=DRIFT_X_FOR_$V, alias=DRIFT_X
+  BRIDGE   = src=DRIFT_Y_FOR_$V, alias=DRIFT_Y
+  BRIDGE   = src=DRIFT_Z_FOR_$V, alias=DRIFT_Z
+
+  //bridge= src=UCTD_MSMNT_REPORT_$V,alias=UCTD_MSMNT_REPORT
+}
+
+//--------------------------------------------------
+// uFldNodeComms Configuration Block
+
+ProcessConfig = uFldNodeComms
+{
+   AppTick       = 2
+   CommsTick     = 2
+
+   comms_range          = 100
+   critical_range       = 25
+   min_msg_interval     = 15
+   max_msg_length       = 2048
+   groups               = true
+   view_node_rpt_pulses = true
+}
+
+//--------------------------------------------------
+// pLogger Configuration Block
+
+ProcessConfig = pLogger
+{
+  AppTick       = 10
+  CommsTick     = 10
+  
+  File          = LOG_SHORESIDE
+  PATH          = ./
+  SyncLog       = true @ 0.2
+  AsyncLog      = true
+  FileTimeStamp = true
+
+  // Log it all!!!!!
+  WildCardLogging = true 
+  WildCardOmitPattern = *_STATUS
+}
+
+//--------------------------------------------------------
+// uProcessWatch Configuration Block
+
+ProcessConfig = uProcessWatch
+{
+  AppTick   = 1
+  CommsTick = 1
+
+  ALLOW_RETRACTIONS = true
+  
+  WATCH_ALL = true      // default is true
+
+  NOWATCH = uXMS*
+  NOWATCH = uPokeDB*
+
+  SUMMARY_WAIT = 12
+}
+

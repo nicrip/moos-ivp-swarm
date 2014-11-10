@@ -1,12 +1,12 @@
 #!/bin/bash 
 
-WARP=10
+WARP=5
 MULTICAST=multicast_1
 VTYPE=KAYAK
-SWARM_NUM_NODES_X=10
-SWARM_NUM_NODES_Y=5
-SWARM_OFFSET_X=100
-SWARM_OFFSET_Y=-100
+SWARM_NUM_NODES_X=7
+SWARM_NUM_NODES_Y=7
+SWARM_OFFSET_X=200
+SWARM_OFFSET_Y=-200
 SWARM_ORIGIN_X=0
 SWARM_ORIGIN_Y=0
 SWARM_DEPTH=200
@@ -54,6 +54,7 @@ for ((i = 0; i < $SWARM_NUM_NODES; i++))
 do
   NODE_NAME="$SWARM_PREFIX$i"
   pAntler ./node_moos/targ_$NODE_NAME.moos >& ./node_output/$NODE_NAME.out &
+  sleep 0.1
 done
 
 echo "Launched $SWARM_NUM_NODES nodes."

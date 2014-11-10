@@ -28,16 +28,16 @@ Processconfig = ANTLER
   Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager3
   Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel4
   Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager4
-  Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel5
-  Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager5
-  Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel6
-  Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager6
-  Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel7
-  Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager7
-  Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel8
-  Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager8
-  Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel9
-  Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager9
+  //Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel5
+  //Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager5
+  //Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel6
+  //Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager6
+  //Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel7
+  //Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager7
+  //Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel8
+  //Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager8
+  //Run = iMSEASOceanModel    @ NewConsole = false ~iMSEASOceanModel9
+  //Run = pLCMOceanModelMgr   @ NewConsole = false ~pSwarmManager9
 }
 
 //--------------------------------------------------------
@@ -347,7 +347,7 @@ ProcessConfig = pSwarmManager4
    MSEAS_TIME_OFFSET	= 0.0
    NODE_PREFIX		= NODE_
    NODE_START_INDEX	= 40
-   NODE_END_INDEX	= 49
+   NODE_END_INDEX	= 48
    SWARM_SUBSET_PREFIX	= 4_
 }
 

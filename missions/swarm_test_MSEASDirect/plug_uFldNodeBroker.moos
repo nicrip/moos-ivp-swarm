@@ -1,0 +1,21 @@
+//--------------------------------------------------
+// uFldNodeBroker configuration block from plugin
+
+ProcessConfig = uFldNodeBroker
+{
+  AppTick   = 10
+  CommsTick = 10
+
+  TRY_SHORE_HOST = pshare_route=$(MULTICAST)
+
+  BRIDGE = src=VIEW_POLYGON
+  BRIDGE = src=VIEW_POINT
+  BRIDGE = src=VIEW_SEGLIST
+  BRIDGE = src=APPCAST
+  BRIDGE = src=NODE_REPORT_LOCAL,  alias=NODE_REPORT
+  BRIDGE = src=NODE_MESSAGE_LOCAL, alias=NODE_MESSAGE
+
+  //BRIDGE = src=NAV_LAT,     alias=NAV_LAT_$(NODE_NAME)
+  //BRIDGE = src=NAV_LONG,    alias=NAV_LONG_$(NODE_NAME)
+  //BRIDGE = src=NAV_DEPTH,   alias=NAV_DEPTH_$(NODE_NAME)
+}

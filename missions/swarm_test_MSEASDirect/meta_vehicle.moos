@@ -22,8 +22,7 @@ Processconfig = ANTLER
   Run = pShare             @ NewConsole = false
   Run = pHostInfo          @ NewConsole = false
   Run = uFldNodeBroker     @ NewConsole = false
-  Run = pLCMNodeMgr        @ NewConsole = false
-  Run = pLogger            @ NewConsole = false
+  Run = uFldMessageHandler @ NewConsole = false
 }
 
 #include plug_uSimMarine.moos
@@ -33,23 +32,4 @@ Processconfig = ANTLER
 #include plug_pShare.moos
 #include plug_pHostInfo.moos
 #include plug_uFldNodeBroker.moos
-#include plug_pLCMNodeMgr.moos
-
-//--------------------------------------------------
-// pLogger Configuration Block
-
-ProcessConfig = pLogger
-{
-  AppTick       = 10
-  CommsTick     = 10
-  
-  File          = LOG_NODE_$(NODE_NAME)
-  PATH          = ./
-  SyncLog       = true @ 0.2
-  AsyncLog      = true
-  FileTimeStamp = true
-
-  // Log it all!!!!!
-  WildCardLogging = true 
-  WildCardOmitPattern = *_STATUS
-}
+#include plug_uFldMessageHandler.moos
