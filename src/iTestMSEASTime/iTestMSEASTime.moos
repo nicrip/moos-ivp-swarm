@@ -1,0 +1,9 @@
+//------------------------------------------------
+// iTestMSEASTime config block
+
+ProcessConfig = iTestMSEASTime
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+
