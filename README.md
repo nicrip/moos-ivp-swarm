@@ -1,4 +1,4 @@
 moos-ivp-swarm
 ==============
 
-Swarm Work
+Swarm Work - deprecated, see moos-ivp-marineswarm
